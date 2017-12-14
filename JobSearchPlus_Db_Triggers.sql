@@ -469,6 +469,13 @@ GO
 --VIEWS
 
 CREATE VIEW [Number_of_leads_Per_day] AS
-SELECT COUNT(LeadID) [Number of leads entered], DATEPART(Day, RecordDate) [Per day of the month]FROM Leads GROUP BY DATEPART(Day, RecordDate)
+SELECT COUNT(LeadID) [Number of leads], DATEPART(Day, RecordDate) [Per day of the month]FROM Leads GROUP BY DATEPART(Day, RecordDate)
 GO
 
+--use JobSearchPlus
+CREATE VIEW [Leads Per Week] AS
+SELECT COUNT(LeadID) [Number of leads],  DATEADD(Day, 1 - DATEPART(WEEK, RecordDate), RecordDate) [Per Week] FROM Leads
+GROUP BY DATEADD(Day, 1 - DATEPART(WEEK, RecordDate), RecordDate)
+GO
+
+SELECT 
